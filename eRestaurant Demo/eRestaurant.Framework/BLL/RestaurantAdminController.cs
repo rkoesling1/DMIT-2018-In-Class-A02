@@ -15,6 +15,7 @@ namespace eRestaurant.Framework.BLL
     {
         // The ObjectDataSource control will do the background communication for CRUD
 
+        #region Manage Special Events (CRUD)
         // Allows the ObjectDataSource to see the method as something we can SELECT from
         [DataObjectMethod(DataObjectMethodType.Select, false)]
         public List<SpecialEvent> ListAllSpecialEvents()
@@ -27,5 +28,60 @@ namespace eRestaurant.Framework.BLL
                 return context.SpecialEvents.ToList();
             }
         }
+
+        [DataObjectMethod(DataObjectMethodType.Update, false)]
+        public void UpdateSpecialEvent(SpecialEvent item)
+        {
+            using (RestaurantContext context = new RestaurantContext())
+            {
+                // First attach the item to the dbContext collection
+                var attached = context.SpecialEvents.Attach(item);
+
+                // Second, get the entry for the exisiting data that should match for
+                // this specific special event
+                var exisiting = context.Entry<SpecialEvent>(attached);
+
+                // Third, mark that the object's values have changed
+                exisiting.State = System.Data.Entity.EntityState.Modified;
+
+                //Lastly, save the changes in the database
+                context.SaveChanges();
+            }
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Delete, false)]
+        public void DeleteSpecialEvent(SpecialEvent item)
+        {
+            using (var context = new RestaurantContext())
+            {
+                // First, get a reference to the actual item in the Db
+                // Find() is a method to look up an item by it's primary key
+                var existing = context.SpecialEvents.Find(item.EventCode);
+
+                // Second, remove the item from the database context
+                context.SpecialEvents.Remove(existing);
+
+                // Lastly, save the change to the database
+                context.SaveChanges();
+            }
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Insert, false)]
+        public void AddSpecialEvent(SpecialEvent item)
+        {
+            using (var context = new RestaurantContext())
+            {
+                // Add the item to the dbContext
+                var added = context.SpecialEvents.Add(item);
+                // p.s. - we aren't really going to do anything with the variable 'added'
+                // I just wanted you to be aware that the Add() method will return the 
+                // newly added object. (This can be useful in other situations, which
+                // we will see later.)
+
+                // Save the changes to the database
+                context.SaveChanges();
+            }
+        }
+        #endregion
     }
 }
