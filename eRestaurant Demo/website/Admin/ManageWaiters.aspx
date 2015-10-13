@@ -126,6 +126,11 @@
                     <asp:TextBox ID="AddressTextBox" runat="server"
                         Text='<%# Bind("Address") %>' />
 
+                    <asp:Label ID="Label7" runat="server" CssClass="control-label"
+                        AssociatedControlLabel="HireDateTextBox">Hire Date</asp:Label>
+                    <asp:TextBox ID="HireDateTextBox" runat="server"
+                        Text='<%# Bind("HireDate") %>' />
+
                 </div>
             </InsertItemTemplate>
         </asp:ListView>
