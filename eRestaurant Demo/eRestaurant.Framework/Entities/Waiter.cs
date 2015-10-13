@@ -10,6 +10,7 @@ namespace eRestaurant.Framework.Entities
 {
     public class Waiter
     {
+        [Key]
         public int WaiterID { get; set; }
         [Required(AllowEmptyStrings = false), StringLength(25)]
         public string FirstName { get; set; }
