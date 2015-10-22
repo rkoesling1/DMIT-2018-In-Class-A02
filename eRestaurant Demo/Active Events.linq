@@ -13,5 +13,5 @@ where eachRow.Active
 select new // ActiveEvent()
 {
 	Code = eachRow.EventCode,
-	Descrption = eachRow.Description
+	Description = eachRow.Description
 }
