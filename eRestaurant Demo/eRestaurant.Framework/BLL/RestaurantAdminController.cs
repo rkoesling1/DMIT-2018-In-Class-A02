@@ -82,55 +82,7 @@ namespace eRestaurant.Framework.BLL
                 context.SaveChanges();
             }
         }
-        #endregion
 
-        #region Manage Waiters (CRUD)
-        [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public List<Waiter> ListAllWaiters()
-        {
-            using (RestaurantContext context = new RestaurantContext())
-            {
-                return context.Waiters.ToList();
-            }
-        }
-
-        [DataObjectMethod(DataObjectMethodType.Update, false)]
-        public void UpdateWaiter(Waiter item)
-        {
-            using (RestaurantContext context = new RestaurantContext())
-            {
-                var attached = context.Waiters.Attach(item);
-
-                var exisiting = context.Entry<Waiter>(attached);
-
-                exisiting.State = System.Data.Entity.EntityState.Modified;
-
-                context.SaveChanges();
-            }
-        }
-
-        [DataObjectMethod(DataObjectMethodType.Delete, false)]
-        public void DeleteWaiter(Waiter item)
-        {
-            using (var context = new RestaurantContext())
-            {
-                var existing = context.Waiters.Find(item.WaiterID);
-
-                context.Waiters.Remove(existing);
-
-                context.SaveChanges();
-            }
-        }
-
-        [DataObjectMethod(DataObjectMethodType.Insert, false)]
-        public void AddWaiter(Waiter item)
-        {
-            using (var context = new RestaurantContext())
-            {
-                var added = context.Waiters.Add(item);
-                context.SaveChanges();
-            }
-        }
-        #endregion
     }
+        #endregion
 }
