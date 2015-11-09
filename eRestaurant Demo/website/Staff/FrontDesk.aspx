@@ -38,5 +38,39 @@
             <p>The time uses the ClockPicker Bootstrap extension</p>
         </details>
     </div>
+
+    <!-- Showing the Reservations for a particular date -->
+    <div class="pull-right col-md-5">
+        <details open>
+            <summary>Reservation by Date/Time</summary>
+            <h4>Today's Reservations</h4>
+            <asp:Repeater ID="ReservationsRepeater" runat="server" DataSourceID="ReservationDataSource" ItemType="eRestaurant.Framework.Entities.DTO.ReservationCollection">
+                <ItemTemplate>
+                    <h4><%# Item.Hour %></h4>
+                    <asp:ListView ID="ReservationSummaryListView" runat="server" ItemType="eRestaurant.Framework.Entities.DTO.ReservationSummary" DataSource="<%# Item.Reservations %>">
+                        <LayoutTemplate>
+                            <div class="seating">
+                                <span runat="server" id="itemPlaceHolder" />
+                            </div>
+                        </LayoutTemplate>
+                        <ItemTemplate>
+                            <div>
+                                <%# Item.Name %> -
+                                <%# Item.NumberInParty %> -
+                                <%# Item.Status %> -
+                                PH: <%# Item.Contact %>
+                            </div>
+                        </ItemTemplate>
+                    </asp:ListView>
+                </ItemTemplate>
+            </asp:Repeater>
+
+            <asp:ObjectDataSource runat="server" ID="ReservationDataSource" OldValuesParameterFormatString="original_{0}" SelectMethod="ReservationsForDate" TypeName="eRestaurant.Framework.BLL.SeatingController">
+                <SelectParameters>
+                    <asp:ControlParameter ControlID="SearchDate" PropertyName="Text" Name="date" Type="DateTime"></asp:ControlParameter>
+                </SelectParameters>
+            </asp:ObjectDataSource>
+        </details>
+    </div>
 </asp:Content>
 
