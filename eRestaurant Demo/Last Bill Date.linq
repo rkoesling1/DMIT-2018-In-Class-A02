@@ -1,10 +1,6 @@
 <Query Kind="Expression">
   <Connection>
-<<<<<<< HEAD
     <ID>82491220-8534-4c78-bcdd-200f3e40d136</ID>
-=======
-    <ID>75c5804d-830b-4e35-8241-eb5a8f581adc</ID>
->>>>>>> origin/master
     <Persist>true</Persist>
     <Server>.</Server>
     <Database>eRestaurant</Database>
@@ -12,10 +8,8 @@
   </Connection>
 </Query>
 
-from eachRow in SpecialEvents
-where eachRow.Active
-select new // ActiveEvent()
-{
-	Code = eachRow.EventCode,
-	Description = eachRow.Description
-}
+//from row in Bills
+//orderby row.BillDate descending
+//select row.BillDate
+Bills.Max(row => row.BillDate)
+// Among the bills, get the max (largest) row such that I look at/use the row's BillDate

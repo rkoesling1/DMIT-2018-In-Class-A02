@@ -22,7 +22,10 @@ namespace eRestaurant.Framework.BLL
             }
         }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
         public List<MenuCategory> ListMenuCategories()
         {
             using (var context = new RestaurantContext())
