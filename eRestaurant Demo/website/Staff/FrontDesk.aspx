@@ -26,24 +26,20 @@
         <asp:TextBox id="SearchTime" runat="server" TextMode="Time" Text="13:00" CssClass="clockpicker"></asp:TextBox>
 
         <!-- TODO -->
-<<<<<<< HEAD
         <script src="../Scripts/clockpicker.js"></script>
         <script>
             $('.clockpicker').clockpicker({ donetext: 'Accept' });
         </script>
         <link itemprop="url" href="../Content/standalone.css" rel="stylesheet" />
         <link itemprop="url" href="../Content/clockpicker.css" rel="stylesheet" />
-=======
->>>>>>> origin/master
+
         <details style="display:inline-block; vertical-align: top;">
             <summary class="badge">About ClockPicker &hellip;</summary>
             <h4>Fancy Bootstrap <a href="http://weareoutman.github.io/clockpicker/">ClockPicker</a></h4>
             <p>The time uses the ClockPicker Bootstrap extension</p>
         </details>
     </div>
-<<<<<<< HEAD
 
-    <!-- Showing the Reservations for a particular date -->
     <div class="pull-right col-md-5">
         <details open>
             <summary>Reservation by Date/Time</summary>
@@ -76,7 +72,5 @@
             </asp:ObjectDataSource>
         </details>
     </div>
-=======
->>>>>>> origin/master
 </asp:Content>
 
