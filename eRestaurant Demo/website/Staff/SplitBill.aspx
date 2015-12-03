@@ -8,6 +8,7 @@
             <asp:ListItem Value="0">[select a bill]</asp:ListItem>
         </asp:DropDownList>
         <asp:LinkButton ID="SelectBill" runat="server" CssClass="btn btn-primary" OnClick="SelectBill_Click">Select Bill</asp:LinkButton>
+        <asp:HiddenField ID="BillToSplit" runat="server" />
 
         <asp:ObjectDataSource runat="server" ID="ActiveBillsDataSource" OldValuesParameterFormatString="original_{0}" SelectMethod="ListUnpaidBills" TypeName="eRestaurant.Framework.BLL.WaiterController"></asp:ObjectDataSource>
         <asp:Label ID="MessageLabel" runat="server" />
@@ -35,10 +36,16 @@
         </div>
         <div class="col-md-6">
             <h2>New Bill</h2>
-            <asp:GridView ID="NewBillItems" runat="server" ItemType="eRestaurant.Framework.Entities.DTO.OrderItem" AutoGenerateColumns="false">
+            <asp:GridView ID="NewBillItems" runat="server" ItemType="eRestaurant.Framework.Entities.DTO.OrderItem"
+              OnSelectedIndexChanged="BillItems_SelectedIndexChanging"
+              AutoGenerateColumns="false">
                 <Columns>
                     <asp:TemplateField>
                         <ItemTemplate>
+                            <asp:LinkButton ID="MoveOver" runat="server" 
+                                CommandName="Select" CssClass="btn btn-default">
+                                <span class="glyphicon glyphicon-backward"></span> Move
+                            </asp:LinkButton>
                             <asp:Label ID="Quantity" runat="server" Text="<%#Item.Quantity %>" /> 
                             <asp:Label ID="ItemName" runat="server" Text="<%#Item.ItemName %>" />
                             <asp:Label ID="Price" runat="server" Text="<%#Item.Price %>" />
@@ -50,6 +57,13 @@
                 </EmptyDataTemplate>
             </asp:GridView>
         </div>
+    </div>
+    
+    <div class="row col-md-12">
+        <asp:LinkButton ID="SplitBill" runat="server" 
+             CssClass="btn btn-default" OnClick="SelectBill_Click">
+            Split the Bill
+        </asp:LinkButton>
     </div>
 </asp:Content>
 

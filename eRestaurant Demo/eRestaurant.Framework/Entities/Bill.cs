@@ -12,6 +12,7 @@ namespace eRestaurant.Framework.Entities
         public DateTime BillDate { get; set; }
         public DateTime? OrderPlaced { get; set; }
         public TimeSpan? OrderPaid { get; set; } // oops, missed this one...
+        public TimeSpan? OrderServed { get; set; } // missed another.... :/
         public int NumberInParty { get; set; }
         public bool PaidStatus { get; set; }
         public int WaiterID { get; set; }
